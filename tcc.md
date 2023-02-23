@@ -16,5 +16,6 @@
 
 - Bater no banco de dados resgatando os dados imputados
 - plotar no front com a realidade aumentada a grade de cada sala (no qr code)
+- Possíveis bibliotecas de realidade aumentada(babylonjs.com)
 
 # Back
