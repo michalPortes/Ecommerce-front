@@ -19,3 +19,4 @@
 - Possíveis bibliotecas de realidade aumentada(babylonjs.com)
 
 # Back
+- Estrutura do BD https://app.diagrams.net/?src=about#G1Tj1OJSKewLTuRaSgbGyzE-y2Ld1Mz-wf
