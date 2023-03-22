@@ -41,6 +41,8 @@ import BasicLayout from '../../../layouts/authentication/components/BasicLayout'
 // Images
 import bgImage from '../../../assets/images/bg-sign-in-basic.jpeg'
 
+import { Login } from '../../../users'
+
 const defaulFormFields = {
   email: '',
   password: ''
@@ -64,8 +66,30 @@ function Basic() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    console.log('entrou no handleSubmit')
+
+    const { currentUser, setCurrentUser } = useContext(UserContext)
+
+    let value = {
+      email: email,
+      password: password
+    }
+
     try {
+      Login(value.email, value.password).then(e => {
+        const token = e.data.token
+        console.log('Saida', currentUser)
+        localStorage.setItem('token', token)
+
+        const LogUser = localStorage.getItem('token')
+
+        try {
+          if (LogUser !== '') {
+            setCurrentUser(!currentUser)
+            console.log('Saida', currentUser)
+          }
+        } catch (error) {}
+      })
+
       resetFormFields()
     } catch (error) {
       switch (error.code) {
@@ -84,8 +108,6 @@ function Basic() {
   const handleChange = event => {
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })
-
-    console.log(formFields)
   }
 
   return (
@@ -144,7 +166,7 @@ function Basic() {
           </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form" onSubmit={handleSubmit}>
+          <MDBox component="form" role="form">
             <MDBox mb={2}>
               <MDInput
                 type="email"
@@ -185,7 +207,7 @@ function Basic() {
                 color="info"
                 fullWidth
                 type="submit"
-                onChange={handleSubmit}
+                onClick={handleSubmit}
               >
                 sign in
               </MDButton>

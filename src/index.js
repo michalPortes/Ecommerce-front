@@ -5,13 +5,15 @@ import App from './App'
 
 // Material Dashboard 2 React Context Provider
 import { MaterialUIControllerProvider } from './context/index'
-
+import { UserProvider } from './context/user.context'
 const rootElement = document.getElementById('root')
 
 render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </MaterialUIControllerProvider>
   </BrowserRouter>,
   rootElement
