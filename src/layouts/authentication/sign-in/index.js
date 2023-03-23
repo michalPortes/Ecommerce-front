@@ -14,9 +14,12 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from 'react'
-
+import { useContext } from 'react'
+import { UserContext } from '../../../context/user.context'
 // react-router-dom components
 import { Link } from 'react-router-dom'
+
+import { Login, Logout } from '../../../users'
 
 // @mui material components
 import Card from '@mui/material/Card'
@@ -36,12 +39,11 @@ import MDInput from '../../../components/MDInput'
 import MDButton from '../../../components/MDButton'
 
 // Authentication layout components
+import DefaultNavbar from '../../../examples/Navbars/DefaultNavbar/index'
 import BasicLayout from '../../../layouts/authentication/components/BasicLayout'
 
 // Images
 import bgImage from '../../../assets/images/bg-sign-in-basic.jpeg'
-
-import { Login } from '../../../users'
 
 const defaulFormFields = {
   email: '',
@@ -49,6 +51,7 @@ const defaulFormFields = {
 }
 
 function Basic() {
+  const { currentUser, setCurrentUser } = useContext(UserContext)
   const [rememberMe, setRememberMe] = useState(false)
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe)
@@ -67,8 +70,6 @@ function Basic() {
   const handleSubmit = async event => {
     event.preventDefault()
 
-    const { currentUser, setCurrentUser } = useContext(UserContext)
-
     let value = {
       email: email,
       password: password
@@ -77,17 +78,12 @@ function Basic() {
     try {
       Login(value.email, value.password).then(e => {
         const token = e.data.token
-        console.log('Saida', currentUser)
+
         localStorage.setItem('token', token)
 
-        const LogUser = localStorage.getItem('token')
+        setCurrentUser(false)
 
-        try {
-          if (LogUser !== '') {
-            setCurrentUser(!currentUser)
-            console.log('Saida', currentUser)
-          }
-        } catch (error) {}
+        console.log(currentUser)
       })
 
       resetFormFields()
@@ -110,8 +106,19 @@ function Basic() {
     setFormFields({ ...formFields, [name]: value })
   }
 
+  const SingOut = async event => {
+    // const LogUser = localStorage.getItem('token')
+
+    Logout().then(e => console.log(e))
+
+    // localStorage.setItem('token', '')
+
+    // setCurrentUser(true)
+  }
+
   return (
     <BasicLayout image={bgImage}>
+      <DefaultNavbar />
       <Card>
         <MDBox
           variant="gradient"
@@ -210,6 +217,14 @@ function Basic() {
                 onClick={handleSubmit}
               >
                 sign in
+              </MDButton>
+              <MDButton
+                variant="gradient"
+                color="info"
+                fullWidth
+                onClick={SingOut}
+              >
+                sign out
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
