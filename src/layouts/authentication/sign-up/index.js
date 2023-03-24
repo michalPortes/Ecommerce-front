@@ -16,19 +16,19 @@ import MDButton from '../../../components/MDButton'
 // Authentication layout components
 import CoverLayout from '../../../layouts/authentication/components/CoverLayout'
 
+import { auth } from '../../../users'
 // Images
 import bgImage from '../../../assets/images/bg-sign-up-cover.jpeg'
 
 const defaulFormFields = {
-  displayName: '',
+  name: '',
   email: '',
-  password: '',
-  confirmPassword: ''
+  password: ''
 }
 
 function Cover() {
   const [formFields, setFormFields] = useState(defaulFormFields)
-  const { displayName, email, password, confirmPassword } = formFields
+  const { name, email, password } = formFields
 
   const resetFormFields = () => {
     setFormFields(defaulFormFields)
@@ -37,12 +37,9 @@ function Cover() {
   const handleSubmit = async event => {
     event.preventDefault()
 
-    if (password !== confirmPassword) {
-      alert('Password do not match!')
-      return
-    }
-
     try {
+      auth(formFields).then(() => {})
+
       resetFormFields()
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -56,7 +53,6 @@ function Cover() {
   const handleChange = event => {
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })
-    console.log(formFields)
   }
 
   return (
@@ -89,9 +85,9 @@ function Cover() {
                 variant="standard"
                 fullWidth
                 required
-                name="displayName"
+                name="name"
                 onChange={handleChange}
-                value={displayName}
+                value={name}
               />
             </MDBox>
             <MDBox mb={2}>
@@ -116,18 +112,6 @@ function Cover() {
                 name="password"
                 onChange={handleChange}
                 value={password}
-              />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput
-                type="password"
-                label="Confirm Password"
-                variant="standard"
-                fullWidth
-                required
-                name="confirmPassword"
-                onChange={handleChange}
-                value={confirmPassword}
               />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
@@ -157,9 +141,9 @@ function Cover() {
                 variant="gradient"
                 color="info"
                 fullWidth
-                onChange={handleSubmit}
+                onClick={handleSubmit}
               >
-                sign in
+                register
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">

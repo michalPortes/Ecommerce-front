@@ -107,13 +107,15 @@ function Basic() {
   }
 
   const SingOut = async event => {
-    // const LogUser = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
+    console.log(token)
+    Logout(token).then(
+      e => (
+        console.log(e), localStorage.setItem('token', ''), setCurrentUser(true)
+      )
+    )
 
-    Logout().then(e => console.log(e))
-
-    // localStorage.setItem('token', '')
-
-    // setCurrentUser(true)
+    //
   }
 
   return (
