@@ -156,7 +156,7 @@ export default function App() {
                   ? brandDark
                   : brandWhite
               }
-              brandName="Material Dashboard 2"
+              brandName="Lanziloti"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -184,7 +184,7 @@ export default function App() {
                 ? brandDark
                 : brandWhite
             }
-            brandName="Material Dashboard 2"
+            brandName="Lanziloti"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

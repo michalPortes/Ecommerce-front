@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // react-router-dom components
 import { Link } from 'react-router-dom'
 
@@ -30,14 +15,7 @@ import MDTypography from '../../../../components/MDTypography'
 import MDButton from '../../../../components/MDButton'
 import MDAvatar from '../../../../components/MDAvatar'
 
-function DefaultProjectCard({
-  image,
-  label,
-  title,
-  description,
-  action,
-  authors
-}) {
+function DefaultProjectCard({ image, label, title, price, action, authors }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <MDAvatar
@@ -114,9 +92,10 @@ function DefaultProjectCard({
             </MDTypography>
           )}
         </MDBox>
-        <MDBox mb={3} lineHeight={0}>
-          <MDTypography variant="button" fontWeight="light" color="text">
-            {description}
+        {/* price */}
+        <MDBox mb={1} lineHeight={3}>
+          <MDTypography variant="button" fontWeight="bold" color="inherit">
+            R$: {price}
           </MDTypography>
         </MDBox>
         <MDBox

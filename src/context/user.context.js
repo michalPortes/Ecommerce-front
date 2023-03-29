@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState } from 'react'
+
 //Esse é o valor atual de acesso
 export const UserContext = createContext({
   currentUser: null,

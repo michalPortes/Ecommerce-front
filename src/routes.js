@@ -1,19 +1,18 @@
 import Dashboard from './layouts/dashboard'
 import Tables from './layouts/tables'
 import Billing from './layouts/billing'
-import RTL from './layouts/rtl'
 import Notifications from './layouts/notifications'
 import Profile from './layouts/profile'
 import SignIn from './layouts/authentication/sign-in'
 import SignUp from './layouts/authentication/sign-up'
-
+import Camisas from './layouts/camisas/index'
 // @mui icons
 import Icon from '@mui/material/Icon'
 
 const routes = [
   {
     type: 'collapse',
-    name: 'Dashboard',
+    name: 'Home',
     key: 'dashboard',
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: '/dashboard',
@@ -21,7 +20,7 @@ const routes = [
   },
   {
     type: 'collapse',
-    name: 'Tables',
+    name: 'Ternos',
     key: 'tables',
     icon: <Icon fontSize="small">table_view</Icon>,
     route: '/tables',
@@ -29,7 +28,7 @@ const routes = [
   },
   {
     type: 'collapse',
-    name: 'Billing',
+    name: 'Blazers',
     key: 'billing',
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: '/billing',
@@ -37,15 +36,55 @@ const routes = [
   },
   {
     type: 'collapse',
-    name: 'RTL',
-    key: 'rtl',
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: '/rtl',
-    component: <RTL />
+    name: 'Camisetas',
+    key: 'Camisetas',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/camisas',
+    component: <Camisas />
   },
   {
     type: 'collapse',
-    name: 'Notifications',
+    name: 'Camisas',
+    key: 'notifications',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/notifications',
+    component: <Notifications />
+  },
+  {
+    type: 'collapse',
+    name: 'Polos',
+    key: 'notifications',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/notifications',
+    component: <Notifications />
+  },
+  {
+    type: 'collapse',
+    name: 'Blusas',
+    key: 'notifications',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/notifications',
+    component: <Notifications />
+  },
+  {
+    type: 'collapse',
+    name: 'Calcas',
+    key: 'notifications',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/notifications',
+    component: <Notifications />
+  },
+  {
+    type: 'collapse',
+    name: 'Bermudas',
+    key: 'notifications',
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: '/notifications',
+    component: <Notifications />
+  },
+  {
+    type: 'collapse',
+    name: 'Sapatos',
     key: 'notifications',
     icon: <Icon fontSize="small">notifications</Icon>,
     route: '/notifications',
