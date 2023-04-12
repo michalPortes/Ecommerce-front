@@ -63,10 +63,6 @@ function Basic() {
     setFormFields(defaulFormFields)
   }
 
-  // const singInWithGoogle = async () => {
-  //   await singInWithGooglePopup()
-  // }
-
   const handleSubmit = async event => {
     event.preventDefault()
 
